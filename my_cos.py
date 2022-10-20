@@ -1,8 +1,8 @@
-#!/usr/bin/env python3  # указывает Unix-подобным системам, какой интерпретатор использовать
+#!/usr/bin/env python3
 '''
 my_cos
 '''
-# -*- coding: utf-8 -*-  # исполизуется кодировка UTF-8
+# -*- coding: utf-8 -*-
 
 import matplotlib.pyplot as plt
 import numpy as np
