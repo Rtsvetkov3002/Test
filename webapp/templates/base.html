@@ -1,0 +1,69 @@
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<title>Калькулятор СЛУ</title>
+	</head>
+	<body>
+		<p style="font-size: 20px"> Reminder: &nbsp;Use &nbsp; '&nbsp;.&nbsp;' &nbsp; instead of &nbsp;'&nbsp;,&nbsp;' </p>
+		{% if Size|int != 0 %}
+			<label style="font-size: 20px"> Size: {{Size}}x{{Size}}</label>
+			</br>
+			</br>
+			<form action="/answer" method="GET">
+				{% for i in range(Size) %}
+					{% for j in range(Size) %}
+						<input 
+						type="text"
+						class="coefs" 
+						id="coefs_cell_[{{i}}][{{j}}]" 
+						name="coefs_cell_[{{i}}][{{j}}]"
+						style="width: 60px"
+						pattern=".{1,}" 
+						required value=""
+						>
+						{% if j != Size-1 %}
+							<label style="font-size: 20px">x<label style="font-size: 12px">{{j+1}}</label> + </label>
+						{%endif%}
+						{% if j == Size-1 %}
+							<label style="font-size: 20px">x<label style="font-size: 12px">{{j+1}}</label>&nbsp; = </label>
+						{%endif%}
+					{% endfor %}
+						<input 
+						type="text"
+						class="bees" 
+						id="b_cell_[{{i}}]" 
+						name="b_cell_[{{i}}]"
+						style="width: 60px"
+						pattern=".{1,}" 
+						required value=""
+						>
+					</br>
+				{% endfor %}
+			</br>
+			<input type="submit" value="Calculate!">
+			<input type="reset" value="Reset">
+			</form>
+			</br>
+			{% if calculation_success == True %}
+				<label style="font-size: 20px"> det = {{det}} </label>
+				</br>
+				{% for i in range(Size) %}
+					<label style="font-size: 20px"> x<label style="font-size: 12px">{{i+1}}</label> = {{answer[i]}}</label>
+					&nbsp;&nbsp;&nbsp;
+				{% endfor %}
+			{% endif %}
+			{% if calculation_success == False %}
+				<label style="font-size: 20px"> det = {{det}} </label>
+			{% endif %}
+		{% else %}
+			<form action="/" method="GET">
+				<label style="font-size: 20px"> Set Size:
+				<input type="number" 
+				name="size_set"
+				style="width: 40px"
+				height=40
+				>
+			</form>
+		{%endif%}
+	</body>
+</html>
